@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q3 2026 Markets — 5 Key Themes</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;width:100%;height:100%;font-family:Inter,Arial,sans-serif;background:#111;color:#fff;overflow:hidden}
+  .deck{width:100vw;height:100vh;position:relative}
+  .slide{
+    position:absolute;inset:0;padding:7vh 9vw;
+    display:flex;flex-direction:column;justify-content:center;
+    opacity:0;transform:translateX(30px);pointer-events:none;
+    transition:opacity .35s ease,transform .35s ease;
+    background:linear-gradient(135deg,#111 0%,#1b1b1b 100%);
+  }
+  .slide.active{opacity:1;transform:none;pointer-events:auto}
+  .slide:nth-child(even){background:linear-gradient(135deg,#151515,#242424)}
+  .kicker{font-size:14px;letter-spacing:.18em;text-transform:uppercase;opacity:.55;margin-bottom:22px}
+  h1{font-size:clamp(42px,6vw,88px);line-height:.98;margin:0 0 28px;max-width:1000px}
+  h2{font-size:clamp(32px,4.5vw,64px);line-height:1.02;margin:0 0 30px;max-width:1000px}
+  p{font-size:clamp(18px,2vw,28px);line-height:1.55;max-width:1000px;color:#ddd;margin:0}
+  .number{position:absolute;right:8vw;top:8vh;font-size:clamp(70px,12vw,180px);font-weight:800;opacity:.08}
+  .metric{font-size:clamp(40px,6vw,82px);font-weight:800;margin:20px 0 8px}
+  .sub{font-size:18px;color:#aaa}
+  .footer{position:absolute;left:9vw;right:9vw;bottom:5vh;display:flex;justify-content:space-between;color:#777;font-size:13px}
+  .progress{position:absolute;left:0;bottom:0;height:4px;background:#fff;width:0;transition:width .35s}
+  .hint{position:fixed;bottom:18px;right:24px;color:#777;font-size:12px;z-index:10}
+  .title h1{max-width:900px}
+  .title p{max-width:720px}
+  @media(max-width:600px){
+    .slide{padding:10vh 7vw}
+    .footer{left:7vw;right:7vw}
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+<section class="slide title active">
+  <div class="kicker">Q3 2026 Market Review</div>
+  <h1>War, $100 Oil &amp;<br>Bond Sell-Off</h1>
+  <p>Five themes that reshaped global financial markets in the third quarter of 2026.</p>
+  <div class="footer"><span>Source: CNBC, Oct. 1, 2026</span><span>01 / 06</span></div>
+</section>
+
+<section class="slide">
+  <div class="number">01</div>
+  <div class="kicker">Theme 01</div>
+  <h2>Markets Become<br>More Volatile</h2>
+  <p>The ongoing Middle East conflict, inflation concerns and changing interest-rate expectations increased market volatility. U.S. equities remained positive overall, but the previous quarter's strong rally slowed.</p>
+  <div class="metric">S&amp;P 500 +2.03%</div>
+  <div class="sub">Nasdaq +2.2% · Dow −1.9%</div>
+  <div class="footer"><span>Q3 2026</span><span>02 / 06</span></div>
+</section>
+
+<section class="slide">
+  <div class="number">02</div>
+  <div class="kicker">Theme 02</div>
+  <h2>AI Stocks Show<br>Mixed Performance</h2>
+  <p>Investors became more cautious about AI valuations, financing, capital expenditure and competition from China. Strong earnings supported some leaders, while other AI-linked names declined.</p>
+  <div class="metric">MSFT +37.5%</div>
+  <div class="sub">Nvidia +14% · Oracle &amp; Broadcom −6%+</div>
+  <div class="footer"><span>AI &amp; Technology</span><span>03 / 06</span></div>
+</section>
+
+<section class="slide">
+  <div class="number">03</div>
+  <div class="kicker">Theme 03</div>
+  <h2>Global Bond<br>Sell-Off</h2>
+  <p>Government bonds sold off as investors anticipated higher inflation and interest rates. Yields reached multi-decade highs across several major developed markets.</p>
+  <div class="metric">U.S. 10Y &gt; 5%</div>
+  <div class="sub">U.S. 30Y &gt; 5.5%</div>
+  <div class="footer"><span>Rates &amp; Fixed Income</span><span>04 / 06</span></div>
+</section>
+
+<section class="slide">
+  <div class="number">04</div>
+  <div class="kicker">Theme 04</div>
+  <h2>Oil Prices Surge<br>Above $100</h2>
+  <p>The continuing Middle East conflict and the blocked Strait of Hormuz pushed energy prices sharply higher, adding to concerns about inflation and the global economic outlook.</p>
+  <div class="metric">Brent +42%</div>
+  <div class="sub">$103.53 per barrel · WTI +30.1%</div>
+  <div class="footer"><span>Energy &amp; Inflation</span><span>05 / 06</span></div>
+</section>
+
+<section class="slide">
+  <div class="number">05</div>
+  <div class="kicker">Theme 05</div>
+  <h2>Dollar Remains<br>Strong</h2>
+  <p>The U.S. dollar maintained most of its gains from earlier in the year. Overall, geopolitical risk, high oil prices, elevated bond yields and AI uncertainty remained major forces shaping markets.</p>
+  <div class="metric">DXY +3% YTD</div>
+  <div class="sub">Dollar index around 101.45 at the end of September</div>
+  <div class="footer"><span>Q3 2026 Takeaway</span><span>06 / 06</span></div>
+</section>
+
+</div>
+<div class="progress" id="progress"></div>
+<div class="hint">← → / Space / Click</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let i=0;
+function show(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+  document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
+}
+document.addEventListener('keydown',e=>{
+  if(['ArrowRight',' ','PageDown'].includes(e.key)){e.preventDefault();show(i+1)}
+  if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(i-1)}
+  if(e.key==='Home')show(0);
+  if(e.key==='End')show(slides.length-1);
+});
+document.addEventListener('click',e=>{
+  if(e.clientX > innerWidth/2) show(i+1); else show(i-1);
+});
+let startX=0;
+document.addEventListener('touchstart',e=>startX=e.touches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-startX;
+  if(Math.abs(dx)>40) show(i+(dx<0?1:-1));
+},{passive:true});
+show(0);
+</script>
+</body>
+</html>
